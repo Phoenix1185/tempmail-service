@@ -322,11 +322,11 @@ async def webhook_generic(request: Request, secret: Optional[str] = None):
     return {"status": "ok"}
 
 @app.post("/webhook/raw")
-async def webhook_raw(request: Request, secret: Optional[str] = None):
+async def webhook_raw(request: Request):
     """Handle raw email content (ideal for Cloudflare Workers)"""
-    if secret and secret != WEBHOOK_SECRET:
-        # Also check header for secret
-        header_secret = request.headers.get("X-Secret")
+    # Verify secret from header
+    header_secret = request.headers.get("X-Secret")
+    if WEBHOOK_SECRET and WEBHOOK_SECRET != "change-me":
         if header_secret != WEBHOOK_SECRET:
             raise HTTPException(401, "Invalid secret")
             
