@@ -392,6 +392,7 @@ async def api_docs(request: Request):
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>📚 TempMail API Documentation</title>
+        <link rel="icon" type="image/x-icon" href="https://files.manuscdn.com/user_upload_by_module/session_file/310519663193300108/iiBpozThzpvnKSta.ico">
         <style>
             :root { --bg: #0f172a; --card: #1e293b; --text: #f8fafc; --primary: #38bdf8; --secondary: #94a3b8; --accent: #38bdf8; }
             body { font-family: -apple-system, system-ui, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 20px; line-height: 1.6; }
@@ -409,13 +410,15 @@ async def api_docs(request: Request):
             code { font-family: 'Fira Code', monospace; color: #e2e8f0; }
             .back-link { display: inline-block; margin-bottom: 20px; color: var(--secondary); text-decoration: none; font-size: 0.9em; }
             .back-link:hover { color: var(--primary); }
+            .logo { width: 60px; height: 60px; margin-bottom: 15px; }
         </style>
     </head>
     <body>
         <div class="container">
             <a href="/" class="back-link">← Back to Web UI</a>
             <div class="header">
-                <h1>📚 API Documentation</h1>
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663193300108/TLzfpVsaiulacTgT.png" alt="TempMail Logo" class="logo">
+                <h1>API Documentation</h1>
                 <p>Integrate TempMail into your own applications</p>
             </div>
 
@@ -500,6 +503,7 @@ async def web_ui():
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>🔒 TempMail Service</title>
+        <link rel="icon" type="image/x-icon" href="https://files.manuscdn.com/user_upload_by_module/session_file/310519663193300108/iiBpozThzpvnKSta.ico">
         <style>
             :root { --bg: #0f172a; --card: #1e293b; --text: #f8fafc; --primary: #38bdf8; --secondary: #94a3b8; }
             body { font-family: -apple-system, system-ui, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 20px; line-height: 1.5; }
@@ -528,12 +532,14 @@ async def web_ui():
             .footer { text-align: center; margin-top: 40px; font-size: 0.8em; color: var(--secondary); }
             .footer a { color: var(--primary); text-decoration: none; }
             #autoRefreshStatus { font-size: 0.8em; color: #10b981; font-weight: bold; margin-left: 10px; }
+            .logo { width: 80px; height: 80px; margin-bottom: 20px; }
         </style>
     </head>
     <body>
         <div class="container">
             <div class="header">
-                <h1>🔒 TempMail Service</h1>
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663193300108/TLzfpVsaiulacTgT.png" alt="TempMail Logo" class="logo">
+                <h1>TempMail Service</h1>
                 <p>Your secure, disposable email address</p>
             </div>
 
