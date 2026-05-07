@@ -383,8 +383,9 @@ async def webhook_raw(request: Request):
 
 # ==================== API DOCUMENTATION (TASK 3) ====================
 @app.get("/api-docs", response_class=HTMLResponse)
-async def api_docs():
-    return """
+async def api_docs(request: Request):
+    base_url = f"{request.url.scheme}://{request.url.netloc}"
+    return f"""
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -421,6 +422,7 @@ async def api_docs():
             <div class="card">
                 <h2>Overview</h2>
                 <p>All API requests should be made to the base URL of this service. The API returns JSON responses unless otherwise specified.</p>
+                <p><strong>Base URL:</strong> <code>{base_url}</code></p>
             </div>
 
             <div class="card">
@@ -430,7 +432,7 @@ async def api_docs():
                     <span class="method get">GET</span> <span class="path">/api/generate</span>
                     <p>Generate a random email address with a real-sounding name.</p>
                     <h3>Example Request</h3>
-                    <pre><code>GET /api/generate</code></pre>
+                    <pre><code>curl {base_url}/api/generate</code></pre>
                     <h3>Example Response</h3>
                     <pre><code>{
   "email": "Emma@phoeniximagebot.qzz.io",
@@ -443,14 +445,14 @@ async def api_docs():
                     <span class="method get">GET</span> <span class="path">/api/generate/{custom}</span>
                     <p>Generate a custom email address.</p>
                     <h3>Example Request</h3>
-                    <pre><code>GET /api/generate/myname</code></pre>
+                    <pre><code>curl {base_url}/api/generate/myname</code></pre>
                 </div>
 
                 <div class="endpoint">
                     <span class="method get">GET</span> <span class="path">/api/inbox/{email}</span>
                     <p>Retrieve all messages for a specific email address.</p>
                     <h3>Example Request</h3>
-                    <pre><code>GET /api/inbox/Emma@phoeniximagebot.qzz.io</code></pre>
+                    <pre><code>curl {base_url}/api/inbox/Emma@phoeniximagebot.qzz.io</code></pre>
                 </div>
 
                 <div class="endpoint">
@@ -475,9 +477,13 @@ async def api_docs():
 
                 <div class="endpoint">
                     <span class="method post">POST</span> <span class="path">/webhook/raw</span>
-                    <p>Webhook for receiving raw email content. Requires <code>X-Secret</code> header.</p>
-                    <h3>Headers</h3>
-                    <pre><code>X-Secret: your-webhook-secret</code></pre>
+                    <p>Webhook for receiving raw email content. Optional <code>X-Secret</code> header for verification.</p>
+                    <h3>Example Request</h3>
+                    <pre><code>curl -X POST {base_url}/webhook/raw \\\n  -H "Content-Type: application/json" \\\n  -d '{{
+    "to": "user@phoeniximagebot.qzz.io",
+    "from": "sender@example.com",
+    "raw": "<raw email content>"
+  }}'</code></pre>
                 </div>
             </div>
         </div>
